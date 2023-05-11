@@ -80,9 +80,6 @@ const ProgressBar = () => {
       });
   }, [awsCountProgress, gcpCountProgress, azureCountProgress]);
 
-  // console.log(awsCountProgress);
-  // console.log("Pass " + awspass);
-  // console.log("fail_count  " + fail);
   let awstotal;
   let gcptotal;
   let azuretotal;
