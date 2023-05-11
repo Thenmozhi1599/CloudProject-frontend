@@ -50,7 +50,7 @@ const Table = ({ chart }) => {
   return (
     <>
       <div id="table-wrapper" style={{width:'100%'}} >
-        <div id="table-scroll" style={{width:'100%',}}>
+        <div id="table-scroll" style={{width:'100%',height:'600px'}}>
           <table>
             <thead>
               <tr>

@@ -4,14 +4,11 @@ import { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import DropdownBox from "./Policyselect.js";
 import Table from "./Table.js";
+import ProgressBar from './progressbar.js'
 
-ChartJS.register(
-  ArcElement,
-  Tooltip,
-  Legend 
-);
+ChartJS.register(ArcElement, Tooltip, Legend);
 
-const Donut = ({chart}) => {
+const Donut = ({ chart }) => {
   const [dataTable, setDataTable] = useState([]);
   const [passed, setPassed] = useState(0);
   const [failed, setfailed] = useState(0);
@@ -27,13 +24,12 @@ const Donut = ({chart}) => {
     ],
     options: {
       layout: {
-        Legend:{
+        Legend: {
           display: true,
-        }
+        },
       },
     },
   });
-
 
   useEffect(() => {
     axios
@@ -53,7 +49,6 @@ const Donut = ({chart}) => {
           } else {
             fail_count += 1;
           }
-
         }
         setPassed(pass_count);
         setfailed(fail_count);
@@ -72,28 +67,46 @@ const Donut = ({chart}) => {
         },
       ],
       options: {
-        plugins:{
-          Legend:{
-            display:true,
-          }
+        plugins: {
+          Legend: {
+            display: true,
+          },
         },
       },
     });
   }, [passed, failed]);
 
   return (
-    <div>
-      <h2>Policy & Compliance check</h2>
-      <div style={{ width: "15vw",  margin: "auto"}}>
-        <center>
+    <div id="dashboard-donut">
+      <h2
+        style={{
+          marginTop: "5px",
+          width: "fit-content",
+          height: "fit-content",
+        }}
+      >
+        Policy & Compliance check
+      </h2>
+      <div style={{ display: "grid", gridTemplateColumns: "2fr 2fr" }}>
+        <div style={{ width: "fit-content", marginLeft: "0" }}>
+          {/* <center> */}
           <Doughnut
+            style={{
+              width: "fit-content",
+              marginLeft: "0rem",
+              marginTop: "0px",
+            }}
             data={chartData}
             options={chartData.options}
           />
+          {/* </center> */}
           <br></br>
-        </center><br></br>
+        </div>
+        <div>
+              <ProgressBar />
+          </div>
+        </div>
       </div>
-    </div>
   );
 };
 

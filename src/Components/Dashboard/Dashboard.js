@@ -18,15 +18,13 @@ import NestedList from "./Sidenav/Sidenav";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import "../Charts/donut";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import DropdownBox from "../Charts/Policyselect";
 import Donut from "../Charts/donut";
 import Table from "../Charts/Table";
 import { props } from "../Charts/Table.js";
-import CollapsibleTable from "./Chumma";
+import CollapsibleTable from "./sample";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -71,7 +69,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export function Dashboard(dataTable) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const [selected_chart, set_selected_chart] = useState('chart');
+  const [selected_chart, set_selected_chart] = useState("chart");
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -152,14 +150,13 @@ export function Dashboard(dataTable) {
   );
 
   const handleChart = (e) => {
-    set_selected_chart(e.target.value)
-  }
+    set_selected_chart(e.target.value);
+  };
 
   return (
-    <div className="dasb">
+    <div className="dash">
       <Box sx={{ flexGrow: 1, width: "100vw" }}>
-        <AppBar position="fixed"
-        >
+        <AppBar position="fixed">
           <Toolbar>
             <Typography
               variant="h6"
@@ -215,24 +212,27 @@ export function Dashboard(dataTable) {
             display: "grid",
             gridTemplateColumns: "auto 1fr",
             marginTop: "4rem",
-            width : "100%",
+            width: "100%",
           }}
         >
-          <NestedList style/>
+          <NestedList style />
 
-          <div 
+{/* MAIN CONTENT */}
+          <div
             style={{
-              display: 'grid',
-              padding: "1rem"
+              display: "grid",
+              padding: "1rem",
             }}
           >
+            <DropdownBox handleChange={handleChart} />
 
-            <DropdownBox  handleChange={handleChart}/>
-            
             <div
               style={{
-                dispaplay: 'grid',
-                gridTemplateColumns: '1fr 1fr',
+                // dispaplay: "grid",
+                // gridTemplateColumns: "1fr 1fr",
+                display: "grid",
+                gridTemplateColumns: "2fr 2fr",
+                gridGap: "20",
               }}
             >
               <Donut chart={selected_chart} />
@@ -240,8 +240,7 @@ export function Dashboard(dataTable) {
             </div>
           </div>
         </div>
-
-
+{/* MAIN CONTENT */}
 
         {renderMobileMenu}
         {renderMenu}
@@ -249,45 +248,3 @@ export function Dashboard(dataTable) {
     </div>
   );
 }
-
-
-{/* <Grid
-container
-sx={{
-  marginTop: "7vh",
-  width: "100vw",
-}}
-
-// gridTemplateColumns={"1fr 1fr"}
->
-<Grid item width={"15%"}>
-  <NestedList />
-</Grid>
-
-<Grid item width="85%">
-  <Box
-    id="Dash-box"
-    sx={{
-      flexGrow: 1,
-      // marginTop: "20vh",
-      // marginLeft: "20vw",
-    }}
-  >
-    <DropdownBox handleChange={set_selected_chart} />
-    <Grid container style={{ margiLeft: "1.5rem" }}>
-      <Grid container spacing={0}>
-        <Grid
-          item
-          // xs={3}
-          height={"400px"}
-          marginTop={"10px"}
-          // width={"500px"}
-        >
-          <Donut />
-        </Grid>
-
-      </Grid>
-    </Grid>
-  </Box>
-</Grid>
-</Grid> */}

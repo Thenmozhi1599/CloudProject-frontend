@@ -30,44 +30,44 @@ export default function NestedList() {
     window.location.href = "/projectform";
   };
 
+  const goToDashboard = () => {
+    window.location.href = "/dashboard";
+  };
+
   return (
     <List
       sx={{
         height: "100vh",
         width: "100%",
-        maxWidth: '350px',
+        maxWidth: "350px",
         bgcolor: "#dddd",
       }}
       component="nav"
     >
-      <ListItemButton>
-        {/* <ListItemIcon></ListItemIcon> */}
+      <ListItemButton onClick={goToDashboard}>
         <ListItemText primary="Overview" />
       </ListItemButton>
       <ListItemButton onClick={goToProject}>
-        {/* <ListItemIcon></ListItemIcon> */}
         <ListItemText primary="Projects" />
       </ListItemButton>
 
       <ListItemButton>
-        {/* <ListItemIcon></ListItemIcon> */}
         <ListItemText primary="Inventory" />
       </ListItemButton>
       <ListItemButton onClick={handleClick}>
-        {/* <ListItemIcon></ListItemIcon> */}
         <ListItemText primary="Security" />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
-      <Collapse in={open} timeout="auto" 
-      //unmountOnExit
+      <Collapse
+        in={open}
+        timeout="auto"
+        //unmountOnExit
       >
         <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 4 }}>
-            {/* <ListItemIcon></ListItemIcon> */}
+          <ListItemButton sx={{ pl: 2 }}>
             <ListItemText primary="Policies" />
           </ListItemButton>
           <ListItemButton>
-            {/* <ListItemIcon></ListItemIcon> */}
             <ListItemText primary="Recommendations" />
           </ListItemButton>
         </List>
