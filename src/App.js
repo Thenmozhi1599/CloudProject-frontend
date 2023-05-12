@@ -13,7 +13,9 @@ function App() {
           <Route path="/" element={<SignIn />} />
           <Route path="/Signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Mainpage/>} />
-          <Route path="/projectform" element={<ProjectForm />} />
+          <Route path="/projectform" element={
+          <ProjectForm />
+          } />
         </Routes>
       </Router>
     </div>

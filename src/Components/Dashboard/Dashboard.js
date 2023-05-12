@@ -12,19 +12,14 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import NestedList from "./Sidenav/Sidenav";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
 import "../Charts/donut";
 import { useEffect, useState } from "react";
-import { Doughnut } from "react-chartjs-2";
 import DropdownBox from "../Charts/Policyselect";
 import Donut from "../Charts/donut";
 import Table from "../Charts/Table";
-import { props } from "../Charts/Table.js";
-import CollapsibleTable from "./sample";
+import DownloadPage from "../Downloadreport";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -217,30 +212,38 @@ export function Dashboard(dataTable) {
         >
           <NestedList style />
 
-{/* MAIN CONTENT */}
+          {/* MAIN CONTENT */}
           <div
             style={{
               display: "grid",
-              padding: "1rem",
+              paddingTop: "2rem",
+              paddingLeft:'4rem'
             }}
           >
+            <div style={{display:'flex',justifyContent:'space-between'}}>
             <DropdownBox handleChange={handleChart} />
-
+            <DownloadPage
+              rootElementId="pagetodownload"
+              downloadFileName="report"
+              />
+              </div>
             <div
-              style={{
-                // dispaplay: "grid",
-                // gridTemplateColumns: "1fr 1fr",
-                display: "grid",
-                gridTemplateColumns: "2fr 2fr",
-                gridGap: "20",
-              }}
+              id="pagetodownload"
+              // style={{
+              //   // dispaplay: "grid",
+              //   // gridTemplateColumns: "1fr 1fr",
+              //   display: "grid",
+              //   gridTemplateColumns: "2fr 2fr",
+              //   gridGap: "20",
+              // }}
             >
               <Donut chart={selected_chart} />
+              <br />
               <Table chart={selected_chart} />
             </div>
           </div>
         </div>
-{/* MAIN CONTENT */}
+        {/* MAIN CONTENT */}
 
         {renderMobileMenu}
         {renderMenu}

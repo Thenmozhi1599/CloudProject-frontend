@@ -6,8 +6,10 @@ export default function DropdownBox(props) {
   return (
     <div
       style={{
-        width: "fit-content",
-        height: "fit-content",
+        display:'flex',
+        justifyContent:'space-between',
+        // width: "fit-content",
+        // height: "fit-content",
       }}
     >
       <select
@@ -24,3 +26,4 @@ export default function DropdownBox(props) {
     </div>
   );
 }
+ 

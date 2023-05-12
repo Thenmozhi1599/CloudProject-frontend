@@ -2,8 +2,6 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
-import DropdownBox from "./Policyselect.js";
-import Table from "./Table.js";
 import ProgressBar from './progressbar.js'
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -28,6 +26,7 @@ const Donut = ({ chart }) => {
           display: true,
         },
       },
+      
     },
   });
 
@@ -60,10 +59,11 @@ const Donut = ({ chart }) => {
       labels: ["checks-passed", "checks-failed"],
       datasets: [
         {
-          label: "checks-passed",
+          label: "",
           data: [passed, failed],
-          backgroundColor: ["green", "orange"],
-          borderColor: ["green", "orange"],
+          backgroundColor: ["#0d6efd", "#C8C8C8"],
+          borderColor: ["#0d6efd", "#C8C8C8"],
+          width: '20px'
         },
       ],
       options: {
@@ -92,7 +92,7 @@ const Donut = ({ chart }) => {
           {/* <center> */}
           <Doughnut
             style={{
-              width: "fit-content",
+              width: "17rem",
               marginLeft: "0rem",
               marginTop: "0px",
             }}
