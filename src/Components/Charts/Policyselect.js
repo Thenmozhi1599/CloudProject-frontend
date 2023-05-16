@@ -9,7 +9,7 @@ export default function DropdownBox(props) {
         display:'flex',
         justifyContent:'space-between',
         // width: "fit-content",
-        // height: "fit-content",
+         height: "fit-content",
       }}
     >
       <select

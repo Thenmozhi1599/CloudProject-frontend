@@ -29,7 +29,7 @@ export default function NestedList() {
         width: "100%",
         maxWidth: "350px",
         bgcolor: "#dddd",
-        height : '100%',
+        //height : '100vh',
         position : 'static',
         listStyle: 'none'
       }}

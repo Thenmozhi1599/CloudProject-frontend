@@ -1,5 +1,6 @@
 import React, { createContext } from "react";
 import "/home/harih/Desktop/templates/src/App.css";
+import "../Charts/donut";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -14,7 +15,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import NestedList from "./Sidenav/Sidenav";
-import "../Charts/donut";
 import { useEffect, useState } from "react";
 import DropdownBox from "../Charts/Policyselect";
 import Donut from "../Charts/donut";
@@ -150,7 +150,7 @@ export function Dashboard(dataTable) {
 
   return (
     <div className="dash">
-      <Box sx={{ flexGrow: 1, width: "100vw" }}>
+      <Box sx={{ flexGrow: 1, width: "100vw",height:'100vh' }}>
         <AppBar position="fixed">
           <Toolbar>
             <Typography
@@ -217,7 +217,9 @@ export function Dashboard(dataTable) {
             style={{
               display: "grid",
               paddingTop: "2rem",
-              paddingLeft:'4rem'
+              paddingLeft:'4rem',
+              paddingRight:'4rem',
+              
             }}
           >
             <div style={{display:'flex',justifyContent:'space-between'}}>
@@ -229,13 +231,6 @@ export function Dashboard(dataTable) {
               </div>
             <div
               id="pagetodownload"
-              // style={{
-              //   // dispaplay: "grid",
-              //   // gridTemplateColumns: "1fr 1fr",
-              //   display: "grid",
-              //   gridTemplateColumns: "2fr 2fr",
-              //   gridGap: "20",
-              // }}
             >
               <Donut chart={selected_chart} />
               <br />

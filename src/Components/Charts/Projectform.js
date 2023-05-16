@@ -17,6 +17,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import "../Charts/donut";
 import NestedList from "../Dashboard/Sidenav/Sidenav";
+import AttackPatterns from '../Attacks/Attackpatterns';
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -207,6 +208,7 @@ export default function Dashboard(dataTable) {
         >
           <NestedList style />
           <Projectform />
+          <AttackPatterns />
         </div>
 
         {renderMobileMenu}
@@ -233,22 +235,23 @@ const Projectform = () => {
 
     const data = {
       projectName,
-      cloudServices: {
-        aws: awsResourceId,
-        gcp: gcpResourceId,
-        azure: azureResourceId,
-      },
+      awsResourceId,
+      gcpResourceId,
+      azureResourceId,
       projectDescription,
     };
 
     try {
-      await axios.post('/api/projects', data);
+      await axios.post('http://localhost:8000/api/projects', data);
 
       setProjectName('');
       setAwsResourceId('');
       setGcpResourceId('');
       setAzureResourceId('');
       setProjectDescription('');
+
+      const localStorageData = JSON.stringify(data)
+      localStorage.setItem('projectform', localStorageData)
 
       alert('Project details submitted successfully!');
     } catch (error) {
@@ -259,69 +262,69 @@ const Projectform = () => {
 
   return (
     <center>
-    <form onSubmit={handleSubmit} style={{
-      margin : '4rem',
-      width:'26vw',
-      height:'50vh',
+      <form onSubmit={handleSubmit} style={{
+        margin: '4rem',
+        width: '26vw',
+        height: '50vh',
       }}>
-      <div style={{display:'flex',justifyContent:'space-between'}}>
-        <label htmlFor="projectName">Project Name  </label>
-        <input
-          type="text"
-          id="projectName"
-          style={{height:'40px'}}
-          value={projectName}
-          onChange={(e) => setProjectName(e.target.value)}
-        />
-      </div>
-     <br></br>
-      <div style={{display:'flex',justifyContent:'space-between'}}>
-        <label htmlFor="awsResourceId">AWS Resource ID  </label>
-        <input
-          type="text"
-          id="awsResourceId"
-          style={{height:'40px'}}
-          value={awsResourceId}
-          onChange={(e) => setAwsResourceId(e.target.value)}
-        />
-      </div>
-      <br></br>
-      <div style={{display:'flex',justifyContent:'space-between'}}>
-        <label htmlFor="gcpResourceId">GCP Resource ID  </label>
-        <input
-          type="text"
-          id="gcpResourceId"
-          value={gcpResourceId}
-          style={{height:'40px'}}
-          onChange={(e) => setGcpResourceId(e.target.value)}
-        />
-      </div>
-      <br></br>
-      <div style={{display:'flex',justifyContent:'space-between'}}>
-        <label htmlFor="azureResourceId">Azure Resource ID  </label>
-        <input
-          type="text"
-          id="azureResourceId"
-          value={azureResourceId}
-          style={{height:'40px'}}
-          onChange={(e) => setAzureResourceId(e.target.value)}
-        />
-      </div>
-      <br></br>
-      <div style={{display:'flex',justifyContent:'space-between'}}> 
-        <label htmlFor="projectDescription">Project Description  </label>
-        <div> 
-        <textarea
-          id="projectDescription"
-          value={projectDescription}
-          style={{height:'60px'}}
-          onChange={(e) => setProjectDescription(e.target.value)}
-          ></textarea>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <label htmlFor="projectName">Project Name  </label>
+          <input
+            type="text"
+            id="projectName"
+            style={{ height: '40px' }}
+            value={projectName}
+            onChange={(e) => setProjectName(e.target.value)}
+          />
+        </div>
+        <br></br>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <label htmlFor="awsResourceId">AWS Resource ID  </label>
+          <input
+            type="text"
+            id="awsResourceId"
+            style={{ height: '40px' }}
+            value={awsResourceId}
+            onChange={(e) => setAwsResourceId(e.target.value)}
+          />
+        </div>
+        <br></br>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <label htmlFor="gcpResourceId">GCP Resource ID  </label>
+          <input
+            type="text"
+            id="gcpResourceId"
+            value={gcpResourceId}
+            style={{ height: '40px' }}
+            onChange={(e) => setGcpResourceId(e.target.value)}
+          />
+        </div>
+        <br></br>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <label htmlFor="azureResourceId">Azure Resource ID  </label>
+          <input
+            type="text"
+            id="azureResourceId"
+            value={azureResourceId}
+            style={{ height: '40px' }}
+            onChange={(e) => setAzureResourceId(e.target.value)}
+          />
+        </div>
+        <br></br>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <label htmlFor="projectDescription">Project Description  </label>
+          <div>
+            <textarea
+              id="projectDescription"
+              value={projectDescription}
+              style={{ height: '60px' }}
+              onChange={(e) => setProjectDescription(e.target.value)}
+            ></textarea>
           </div>
-      </div>
-      <br></br>
-      <button type="submit" style={{width:'150px',alignItems:'center'}}>Submit</button>
-    </form>
+        </div>
+        <br></br>
+        <button type="submit" style={{ width: '150px', alignItems: 'center' }}>Submit</button>
+      </form>
     </center>
   );
 };

@@ -4,6 +4,7 @@ import SignIn from "./Components/SignIn";
 import SignUp from "./Components/SignUp";
 import Mainpage from "./Components/Mainpage";
 import ProjectForm from "./Components/Charts/Projectform";
+import AttackPatterns from "./Components/Attacks/Attackpatterns";
 
 function App() {
   return (
@@ -13,10 +14,10 @@ function App() {
           <Route path="/" element={<SignIn />} />
           <Route path="/Signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Mainpage/>} />
-          <Route path="/projectform" element={
-          <ProjectForm />
-          } />
+          <Route path="/projectform" element={<ProjectForm />} />
+          <Route path="/attack-patterns" element={<AttackPatterns />} />
         </Routes>
+
       </Router>
     </div>
   );

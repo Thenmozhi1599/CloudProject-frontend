@@ -3,6 +3,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import ProgressBar from './progressbar.js'
+import BoltIcon from '@mui/icons-material/Bolt';
+import SyncIcon from '@mui/icons-material/Sync';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -26,7 +28,7 @@ const Donut = ({ chart }) => {
           display: true,
         },
       },
-      
+
     },
   });
 
@@ -76,6 +78,18 @@ const Donut = ({ chart }) => {
     });
   }, [passed, failed]);
 
+  const handleSyncResources =() =>{
+    console.log('syncing resources')
+    
+
+  }
+
+  const handleAttackPatterns =() =>{
+    console.log('Redirecting to Attack patterns')
+    window.location.href = "/attack-patterns";
+  }
+
+
   return (
     <div id="dashboard-donut">
       <h2
@@ -87,9 +101,8 @@ const Donut = ({ chart }) => {
       >
         Policy & Compliance check
       </h2>
-      <div style={{ display: "grid", gridTemplateColumns: "2fr 2fr" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "2fr 2fr 2fr", gridGap: '10px' }}>
         <div style={{ width: "fit-content", marginLeft: "0" }}>
-          {/* <center> */}
           <Doughnut
             style={{
               width: "17rem",
@@ -99,14 +112,46 @@ const Donut = ({ chart }) => {
             data={chartData}
             options={chartData.options}
           />
-          {/* </center> */}
           <br></br>
         </div>
         <div>
-              <ProgressBar />
+          <ProgressBar />
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "2fr 2fr 2fr", gridAutoRows: "100px", gridGap: '10px' }}>
+          <div style={{
+            backgroundColor: "white", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)", borderRadius: "4px",
+            padding: "10px", display: 'grid', placeItems: 'center', cursor: 'pointer',
+          }}   onClick={handleAttackPatterns}>
+
+            <p>
+              <BoltIcon sx={{ fontSize: 40, color: '#0d6efd' }} />
+              0</p>
+            <p>
+              Attack Patterns
+            </p>
           </div>
+          <div style={{ backgroundColor: "white", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)", 
+                  borderRadius: "4px", padding: "10px", cursor: 'pointer',}}
+                  onClick={handleSyncResources}>
+
+            <SyncIcon sx={{ fontSize: 40, color: '#0d6efd' }} />
+          </div>
+          <div>
+
+          </div>
+          <div>
+
+          </div>
+          <div>
+
+          </div>
+          <div>
+
+          </div>
+
         </div>
       </div>
+    </div>
   );
 };
 

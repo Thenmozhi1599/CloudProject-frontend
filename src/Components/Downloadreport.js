@@ -11,13 +11,13 @@ const DownloadPage = ({rootElementId,downloadFileName }) => {
         const imgProps= pdf.getImageProperties(imgData);
         const pdfWidth = pdf.internal.pageSize.getWidth();
         const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-        pdf.addImage(imgData,'JPEG',0,0, pdfWidth, pdfHeight);
+        pdf.addImage(imgData,'JPEG',10,10, pdfWidth, pdfHeight);
         pdf.save(`${downloadFileName}`)
         });
     };
     return (
         <div>
-            <button onClick={downloadFileDocument} >Generate report</button>
+            <button type="submit" style={{width:'150px',alignItems:'center'}}onClick={downloadFileDocument} >Generate report</button>
         </div>
     )
 }
