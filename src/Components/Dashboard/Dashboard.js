@@ -16,9 +16,9 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import NestedList from "./Sidenav/Sidenav";
 import { useEffect, useState } from "react";
-import DropdownBox from "../Charts/Policyselect";
 import Donut from "../Charts/donut";
 import Table from "../Charts/Table";
+import DropdownBox from "../Charts/Policyselect";
 import DownloadPage from "../Downloadreport";
 
 const Search = styled("div")(({ theme }) => ({
@@ -51,7 +51,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -149,100 +148,37 @@ export function Dashboard(dataTable) {
   };
 
   return (
-    <div className="dash">
-      <Box sx={{ flexGrow: 1, width: "100vw",height:'100vh' }}>
-        <AppBar position="fixed">
-          <Toolbar>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ display: { xs: "none", sm: "block" } }}
-            >
-              Cloud-asm
-            </Typography>
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
-              />
-            </Search>
-            <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { xs: "", md: "flex" } }}>
-              <IconButton size="large" aria-label="" color="inherit">
-                <Badge badgeContent={0} color="error"></Badge>
-              </IconButton>
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-            </Box>
-            <Box sx={{ display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="show more"
-                aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                onClick={handleMobileMenuOpen}
-                color="inherit"
-              >
-                <MoreIcon />
-              </IconButton>
-            </Box>
-          </Toolbar>
-        </AppBar>
+    <>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "auto 1fr",
-            marginTop: "4rem",
-            width: "100%",
-          }}
-        >
-          <NestedList style />
+      {/* MAIN CONTENT */}
+      <div
+        style={{
+          display: "grid",
+          paddingTop: "2rem",
+          paddingLeft: '4rem',
+          paddingRight: '4rem',
 
-          {/* MAIN CONTENT */}
-          <div
-            style={{
-              display: "grid",
-              paddingTop: "2rem",
-              paddingLeft:'4rem',
-              paddingRight:'4rem',
-              
-            }}
-          >
-            <div style={{display:'flex',justifyContent:'space-between'}}>
-            <DropdownBox handleChange={handleChart} />
+        }}
+      >
+        <div id="pagetodownload">
+          <div style={{ display: 'flex' }}>
+            <Donut chart={selected_chart} />
+          </div>
+          <br />
+          <Table chart={selected_chart} />
+        </div>
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        {/* <DropdownBox handleChange={handleChart} />
             <DownloadPage
               rootElementId="pagetodownload"
               downloadFileName="report"
-              />
-              </div>
-            <div
-              id="pagetodownload"
-            >
-              <Donut chart={selected_chart} />
-              <br />
-              <Table chart={selected_chart} />
-            </div>
-          </div>
-        </div>
-        {/* MAIN CONTENT */}
+              /> */}
+      </div>
+      {/* MAIN CONTENT */}
 
-        {renderMobileMenu}
-        {renderMenu}
-      </Box>
-    </div>
+      {renderMobileMenu}
+      {renderMenu}
+    </>
   );
 }

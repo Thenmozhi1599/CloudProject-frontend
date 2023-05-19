@@ -5,10 +5,14 @@ import { Doughnut } from "react-chartjs-2";
 import ProgressBar from './progressbar.js'
 import BoltIcon from '@mui/icons-material/Bolt';
 import SyncIcon from '@mui/icons-material/Sync';
+import StorageIcon from '@mui/icons-material/Storage';
+import SummarizeIcon from '@mui/icons-material/Summarize';
+import ReportIcon from '@mui/icons-material/Report';
+import PolicyIcon from '@mui/icons-material/Policy';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const Donut = ({ chart }) => {
+export default function Donut({ chart }) {
   const [dataTable, setDataTable] = useState([]);
   const [passed, setPassed] = useState(0);
   const [failed, setfailed] = useState(0);
@@ -78,17 +82,20 @@ const Donut = ({ chart }) => {
     });
   }, [passed, failed]);
 
-  const handleSyncResources =() =>{
+  const handleSyncResources = async (e) => {
     console.log('syncing resources')
-    
-
+    try {
+      await axios.post('http://localhost:8000/sync-resources')
+    } catch (error) {
+      console.error(error);
+      alert('An error occurred while syncing resources.');
+    }
   }
 
-  const handleAttackPatterns =() =>{
+  const handleAttackPatterns = () => {
     console.log('Redirecting to Attack patterns')
     window.location.href = "/attack-patterns";
   }
-
 
   return (
     <div id="dashboard-donut">
@@ -120,8 +127,8 @@ const Donut = ({ chart }) => {
         <div style={{ display: "grid", gridTemplateColumns: "2fr 2fr 2fr", gridAutoRows: "100px", gridGap: '10px' }}>
           <div style={{
             backgroundColor: "white", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)", borderRadius: "4px",
-            padding: "10px", display: 'grid', placeItems: 'center', cursor: 'pointer',
-          }}   onClick={handleAttackPatterns}>
+            padding: "10px", display: 'grid', cursor: 'pointer',
+          }} onClick={handleAttackPatterns}>
 
             <p>
               <BoltIcon sx={{ fontSize: 40, color: '#0d6efd' }} />
@@ -130,22 +137,63 @@ const Donut = ({ chart }) => {
               Attack Patterns
             </p>
           </div>
-          <div style={{ backgroundColor: "white", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)", 
-                  borderRadius: "4px", padding: "10px", cursor: 'pointer',}}
-                  onClick={handleSyncResources}>
-
-            <SyncIcon sx={{ fontSize: 40, color: '#0d6efd' }} />
+          <div style={{
+            backgroundColor: "white", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
+            borderRadius: "4px", padding: "10px", cursor: 'pointer', placeItems: 'center'
+          }}
+            onClick={handleSyncResources}>
+            <p>
+              <SyncIcon sx={{ fontSize: 40, color: '#0d6efd' }} />
+            </p>
+            <p>
+              Sync resources
+            </p>
           </div>
-          <div>
+          <div style={{
+            backgroundColor: "white", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
+            borderRadius: "4px", padding: "10px", cursor: 'pointer', placeItems: 'center'
+          }}>
+            <p>
+              <StorageIcon sx={{ fontSize: 40, color: '#0d6efd' }} />
+            </p>
+            <p>
+              My Resources
+            </p>
+          </div>
+          <div style={{
+            backgroundColor: "white", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
+            borderRadius: "4px", padding: "10px", cursor: 'pointer', placeItems: 'center'
+          }} >
+            <p>
+              <PolicyIcon sx={{ fontSize: 40, color: '#0d6efd' }} />
+              0</p>
+            <p>
+              Policies
+            </p>
+          </div>
+          <div style={{
+            backgroundColor: "white", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
+            borderRadius: "4px", padding: "10px", cursor: 'pointer', placeItems: 'center'
+          }}>
+            <p>
+              <ReportIcon sx={{ fontSize: 40, color: '#0d6efd' }} />
+            </p>
+            <p>
+              Threats
+            </p>
 
           </div>
-          <div>
+          <div style={{
+            backgroundColor: "white", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
+            borderRadius: "4px", padding: "10px", cursor: 'pointer', placeItems: 'center'
+          }}>
 
-          </div>
-          <div>
-
-          </div>
-          <div>
+            <p>
+              <SummarizeIcon sx={{ fontSize: 40, color: '#0d6efd' }} />
+            </p>
+            <p>
+              Reports
+            </p>
 
           </div>
 
@@ -154,5 +202,3 @@ const Donut = ({ chart }) => {
     </div>
   );
 };
-
-export default Donut;

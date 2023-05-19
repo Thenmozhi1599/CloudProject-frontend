@@ -17,7 +17,7 @@ const DownloadPage = ({rootElementId,downloadFileName }) => {
     };
     return (
         <div>
-            <button type="submit" style={{width:'150px',alignItems:'center'}}onClick={downloadFileDocument} >Generate report</button>
+            <button type="submit" style={{width:'150px',alignItems:'center',height:'inherit'}}onClick={downloadFileDocument} >Generate report</button>
         </div>
     )
 }

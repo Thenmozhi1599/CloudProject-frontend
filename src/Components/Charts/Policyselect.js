@@ -8,7 +8,7 @@ export default function DropdownBox(props) {
       style={{
         display:'flex',
         justifyContent:'space-between',
-        // width: "fit-content",
+        width: "fit-content",
          height: "fit-content",
       }}
     >

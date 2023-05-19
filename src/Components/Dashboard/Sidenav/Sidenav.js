@@ -27,7 +27,7 @@ export default function NestedList() {
       sx={{
         height: "100vh",
         width: "100%",
-        maxWidth: "350px",
+        maxWidth: "200px",
         bgcolor: "#dddd",
         //height : '100vh',
         position : 'static',
