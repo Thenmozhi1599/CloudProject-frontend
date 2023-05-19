@@ -1,3 +1,6 @@
+### 'npm install' 
+to intall all dependencies
+
 ### `npm start`
 
 
